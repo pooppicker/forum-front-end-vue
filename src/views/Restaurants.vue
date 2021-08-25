@@ -5,7 +5,7 @@
 
     <div class="row">
       <!-- 餐廳卡片 RestaurantCard-->
-      <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant" />
+      <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.id" :initial-restaurant="restaurant" />
     </div>
 
     <!-- 分頁標籤 RestaurantPagination -->

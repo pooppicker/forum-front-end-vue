@@ -3,18 +3,18 @@
     <div class="card mb-4">
       <img
         class="card-img-top"
-        src="https://via.placeholder.com/300"
+        :src="restaurant.image"
         alt="Card image cap"
         width="286px"
         height="180px"
       />
       <div class="card-body">
         <p class="card-text title-wrap">
-          <a href="#"> Deangelo Farrell </a>
+          <a href="#"> {{ restaurant.name }} </a>
         </p>
-        <span class="badge badge-secondary">中式料理</span>
+        <span class="badge badge-secondary">{{ restaurant.Category ? restaurant.Category.name : '未分類' }}</span>
         <p class="card-text text-truncate">
-          Voluptates veritatis blanditiis ipsam. Tempora mol
+          {{ restaurant.description }}
         </p>
       </div>
       <div class="card-footer">
@@ -34,11 +34,16 @@
 <script>
 export default {
   props: {
-    restaurant: {
+    initialRestaurant: {
       type: Object,
       required: true
     }
-    
   },
+  data() {
+    return {
+      restaurant: this.initialRestaurant
+    }
+    
+  }
 }
 </script>

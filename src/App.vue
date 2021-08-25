@@ -13,6 +13,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import Navbar from './components/Navbar'
+
 export default {
   components: {
     Navbar,
