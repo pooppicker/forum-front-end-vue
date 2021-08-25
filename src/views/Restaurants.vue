@@ -1,17 +1,25 @@
 <template>
   <div class="container py-5">
     <NavTabs />
-    <h1 class="mt-5">
-      首頁 － 餐廳列表
-    </h1>
+    <!-- 餐廳類別標籤 RestaurantsNavPills -->
+
+    <div class="row">
+      <!-- 餐廳卡片 RestaurantCard-->
+      <RestaurantCard />
+    </div>
+
+    <!-- 分頁標籤 RestaurantPagination -->
   </div>
 </template>
 
 <script>
 import NavTabs from './../components/NavTabs.vue'
+import RestaurantCard from './../components/RestaurantCard.vue'
+
 export default {
   components: {
     NavTabs,
+    RestaurantCard
   }
 }
 </script>
