@@ -5,14 +5,19 @@
     <RestaurantDetail :initial-restaurant="restaurant" />
     <hr />
     <!-- 餐廳評論 RestaurantComments -->
-    <RestaurantComments :restaurant-comments="restaurantComments" />
+    <RestaurantComments 
+      :restaurant-comments="restaurantComments" 
+      @after-delete-comment="afterDeleteComment"
+    />
     <!-- 新增評論 CreateComment -->
+    <CreateComment />
   </div>
 </template>
 
 <script>
 import RestaurantDetail from "./../components/RestaurantDetail.vue"
 import RestaurantComments from "./../components/RestaurantComments.vue"
+import CreateComment from "./../components/CreateComment.vue"
 
 const dummyData = {
   restaurant: {
@@ -63,7 +68,8 @@ const dummyData = {
 export default {
   components: {
     RestaurantDetail,
-    RestaurantComments
+    RestaurantComments,
+    CreateComment
   },
   data() {
     return {
@@ -102,6 +108,10 @@ export default {
         isLiked: dummyData.isLiked,
       }
       this.restaurantComments = dummyData.restaurant.Comments
+    },
+    afterDeleteComment(commentId) {
+      console.log('afterDeleteComment', commentId)
+      this.restaurantComments = this.restaurantComments.filter(comment => comment.id !== commentId)
     }
   }
 };
