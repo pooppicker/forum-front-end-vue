@@ -9,8 +9,22 @@
         >追蹤人數：{{ user.FollowerCount }}</span
       >
       <p class="mt-3">
-        <button type="button" class="btn btn-danger">取消追蹤</button>
-        <button type="button" class="btn btn-primary">追蹤</button>
+        <button 
+        v-if="user.isFollowed"
+        @click.prevent.stop="deleteFollow"
+        type="button" 
+        class="btn btn-danger"
+        >
+        取消追蹤
+        </button>
+        <button 
+        v-else
+        @click.prevent.stop="addFollow"
+        type="button" 
+        class="btn btn-primary"
+        >
+        追蹤
+        </button>
       </p>
     </div>
 </template>
@@ -28,5 +42,19 @@ export default {
       user: this.initialUsers,
     };
   },
+  methods: {
+    addFollow() {
+      this.user = {
+        ...this.user,
+        isFollowed: true
+      }
+    },
+    deleteFollow() {
+      this.user = {
+        ...this.user,
+        isFollowed: false
+      }
+    },
+  }
 };
 </script>
