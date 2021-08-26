@@ -26,7 +26,14 @@
 </template>
 
 <script>
+import {v4 as uuidv4} from 'uuid'
 export default {
+  props: {
+    restaurantId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       text: ''
@@ -34,7 +41,13 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log('form submit', this.text)
+      this.$emit('after-create-comment', {
+        commentId: uuidv4(), //temperary used. did not get api yet, cannot get commentid
+        restaurantId: this.restaurantId,
+        text: this.text
+
+      })
+      this.text = ''
     }
   }
 }

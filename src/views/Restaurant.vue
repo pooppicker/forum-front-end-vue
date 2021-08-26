@@ -5,19 +5,22 @@
     <RestaurantDetail :initial-restaurant="restaurant" />
     <hr />
     <!-- 餐廳評論 RestaurantComments -->
-    <RestaurantComments 
-      :restaurant-comments="restaurantComments" 
+    <RestaurantComments
+      :restaurant-comments="restaurantComments"
       @after-delete-comment="afterDeleteComment"
     />
     <!-- 新增評論 CreateComment -->
-    <CreateComment />
+    <CreateComment
+      :restaurant-id="restaurant.id"
+      @after-create-comment="afterCreateComment"
+    />
   </div>
 </template>
 
 <script>
-import RestaurantDetail from "./../components/RestaurantDetail.vue"
-import RestaurantComments from "./../components/RestaurantComments.vue"
-import CreateComment from "./../components/CreateComment.vue"
+import RestaurantDetail from "./../components/RestaurantDetail.vue";
+import RestaurantComments from "./../components/RestaurantComments.vue";
+import CreateComment from "./../components/CreateComment.vue";
 
 const dummyData = {
   restaurant: {
@@ -65,36 +68,48 @@ const dummyData = {
   isLiked: false,
 };
 
+const dummyUser = {
+  currentUser: {
+    id: 1,
+    name: "root123",
+    email: "root@example.com",
+    image: "https://i.imgur.com/KVFFj35.jpeg",
+    isAdmin: true,
+  },
+  isAuthenticated: true,
+};
+
 export default {
   components: {
     RestaurantDetail,
     RestaurantComments,
-    CreateComment
+    CreateComment,
   },
   data() {
     return {
       restaurant: {
         id: -1,
-        name: '',
-        categoryName: '',
-        image: '',
-        openingHours: '',
-        tel: '',
-        address: '',
-        description: '',
+        name: "",
+        categoryName: "",
+        image: "",
+        openingHours: "",
+        tel: "",
+        address: "",
+        description: "",
         isFavorited: false,
-        isLiked: false
+        isLiked: false,
       },
-      restaurantComments: []
-    }
+      restaurantComments: [],
+      currentUser: dummyUser.currentUser
+    };
   },
   created() {
-    const { id } = this.$route.params
-    this.fetchRestaurant(id)
+    const { id } = this.$route.params;
+    this.fetchRestaurant(id);
   },
   methods: {
     fetchRestaurant(restaurantId) {
-      console.log('id', restaurantId)
+      console.log("id", restaurantId);
       this.restaurant = {
         id: dummyData.restaurant.id,
         name: dummyData.restaurant.name,
@@ -106,13 +121,29 @@ export default {
         description: dummyData.restaurant.description,
         isFavorited: dummyData.isFavorited,
         isLiked: dummyData.isLiked,
-      }
-      this.restaurantComments = dummyData.restaurant.Comments
+      };
+      this.restaurantComments = dummyData.restaurant.Comments;
     },
     afterDeleteComment(commentId) {
-      console.log('afterDeleteComment', commentId)
-      this.restaurantComments = this.restaurantComments.filter(comment => comment.id !== commentId)
-    }
-  }
+      console.log("afterDeleteComment", commentId);
+      this.restaurantComments = this.restaurantComments.filter(
+        (comment) => comment.id !== commentId
+      );
+    },
+    afterCreateComment(payload) {
+      console.log("payload", payload);
+      const { commentId, restaurantId, text } = payload;
+      this.restaurantComments.push({
+        id: commentId,
+        RestaurantId: restaurantId,
+        User: {
+          id: this.currentUser.id,
+          name: this.currentUser.name
+        },
+        text,
+        createdAt: new Date()
+      });
+    },
+  },
 };
 </script>
