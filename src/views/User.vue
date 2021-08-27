@@ -1287,6 +1287,7 @@ const dummyData = {
   },
   isFollowed: false,
 };
+
 export default {
   components: {
     UserProfileCard,
@@ -1299,6 +1300,7 @@ export default {
     return {
       profile: {
         id: -1,
+        image: "",
         name: "",
         email: "",
         commentsLength: 0,

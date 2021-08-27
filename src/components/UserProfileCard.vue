@@ -19,9 +19,34 @@
             <li><strong>{{ profile.followersLength}}</strong> followers (追隨者)</li>
           </ul>
           <p>
-            <a href="/users/1/edit"
-              ><button type="submit" class="btn btn-primary">edit</button></a
-            >
+            <a href="/users/1/edit">
+              <template v-if="currentUser.isAdmin">
+                <button 
+                  type="submit" 
+                  class="btn btn-primary mr-3"
+                  >
+                  edit
+                </button>
+              </template>
+              <template v-else>
+                <button 
+                  v-if="profile.isFollowed"
+                  @click.stop.prevent="deleteFollowing"
+                  type="submit" 
+                  class="btn btn-danger"
+                  >
+                  取消追蹤
+                  </button>
+                <button 
+                  v-else
+                  @click.stop.prevent="addFollowing"
+                  type="submit" 
+                  class="btn btn-primary"
+                  >
+                  追蹤
+                  </button>
+                </template>
+            </a>
           </p>
         </div>
       </div>
@@ -30,6 +55,17 @@
 </template>
 
 <script>
+const dummyUser = {
+  currentUser: {
+    id: 1,
+    name: 'root',
+    email: 'root@example.com',
+    image: 'https://i.imgur.com/58ImzMM.png',
+    isAdmin: true
+  },
+  isAuthenticated: true
+}
+
 export default {
   props: {
     initialProfile: {
@@ -39,7 +75,22 @@ export default {
   },
   data() {
     return {
-      profile: this.initialProfile
+      profile: this.initialProfile,
+      currentUser: dummyUser.currentUser
+    }
+  },
+  methods: {
+    addFollowing() {
+      this.profile = {
+        ...this.profile,
+        isFollowed: true
+      }
+    },
+    deleteFollowing() {
+      this.profile = {
+        ...this.profile,
+        isFollowed: false
+      }
     }
   }
 }
