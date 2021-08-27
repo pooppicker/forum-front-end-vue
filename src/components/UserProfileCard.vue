@@ -3,20 +3,20 @@
     <div class="row no-gutters">
       <div class="col-md-4">
         <img
-          src="https://i.imgur.com/KVFFj35.jpeg"
+          :src="profile.image"
           width="300px"
           height="300px"
         />
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">root123</h5>
-          <p class="card-text">root@example.com</p>
+          <h5 class="card-title">{{ profile.name }}</h5>
+          <p class="card-text">{{ profile.email }}</p>
           <ul class="list-unstyled list-inline">
-            <li><strong>35</strong> 已評論餐廳</li>
-            <li><strong>5</strong> 收藏的餐廳</li>
-            <li><strong>4</strong> followings (追蹤者)</li>
-            <li><strong>4</strong> followers (追隨者)</li>
+            <li><strong>{{ profile.commentsLength }}</strong> 已評論餐廳</li>
+            <li><strong>{{ profile.favoritedRestaurantsLength }}</strong> 收藏的餐廳</li>
+            <li><strong>{{ profile.followingsLength}}</strong> followings (追蹤者)</li>
+            <li><strong>{{ profile.followersLength}}</strong> followers (追隨者)</li>
           </ul>
           <p>
             <a href="/users/1/edit"
@@ -28,3 +28,19 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    initialProfile: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      profile: this.initialProfile
+    }
+  }
+}
+</script>

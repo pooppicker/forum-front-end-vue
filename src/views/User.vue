@@ -2,7 +2,7 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <!-- User profile Card -->
-      <UserProfileCard />
+      <UserProfileCard :initial-profile="profile" />
       <div class="row">
         <div class="col-md-4">
           <!-- User Following Card -->
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import UserProfileCard from './../components/UserProfileCard.vue'
-import UserFollowingsCard from './../components/UserFollowingsCard.vue'
-import UserFollowersCard from './../components/UserFollowersCard.vue'
-import UserCommentsCard from './../components/UserCommentsCard.vue'
-import UserFavoritedRestaurantsCard from './../components/UserFavoritedRestaurantsCard.vue'
+import UserProfileCard from "./../components/UserProfileCard.vue";
+import UserFollowingsCard from "./../components/UserFollowingsCard.vue";
+import UserFollowersCard from "./../components/UserFollowersCard.vue";
+import UserCommentsCard from "./../components/UserCommentsCard.vue";
+import UserFavoritedRestaurantsCard from "./../components/UserFavoritedRestaurantsCard.vue";
 
 const dummyData = {
   profile: {
@@ -1293,16 +1293,49 @@ export default {
     UserFollowingsCard,
     UserFollowersCard,
     UserCommentsCard,
-    UserFavoritedRestaurantsCard
+    UserFavoritedRestaurantsCard,
   },
   data() {
     return {
-      profile: {},
+      profile: {
+        id: -1,
+        name: "",
+        email: "",
+        commentsLength: 0,
+        favoritedRestaurantsLength: 0,
+        followersLength: 0,
+        followingsLength: 0,
+      },
     };
   },
-  created() {},
+  created() {
+    const { id } = this.$route.params
+    this.fetchUser(id);
+  },
   methods: {
-    fetchUser() {},
+    fetchUser() {
+      const {
+        id,
+        image,
+        name,
+        email,
+        Comments,
+        FavoritedRestaurants,
+        Followers,
+        Followings,
+      } = dummyData.profile
+      this.profile = {
+        ...this.profile,
+        id,
+        image,
+        name,
+        email,
+        commentsLength: Comments.length,
+        favoritedRestaurantsLength: FavoritedRestaurants.length,
+        followersLength: Followers.length,
+        followingsLength: Followings.length
+      };
+    },
   },
 };
 </script>
