@@ -82,11 +82,11 @@ export default {
     };
   },
   mounted() {
-    const { id: restaurantId } = this.$route.params;
-    this.fetchRestaurant(restaurantId);
+    const { id } = this.$route.params;
+    this.fetchRestaurant(id);
   },
   methods: {
-    fetchRestaurant(restaurantId) {
+    fetchRestaurant() {
       const { restaurant } = dummyData;
       const {
         id,
