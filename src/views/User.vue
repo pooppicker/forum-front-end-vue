@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8">
           <!-- User Comments Card -->
-          <UserCommentsCard />
+          <UserCommentsCard :comments="comments" />
           <br />
           <!-- User Favorite Restaurant Card -->
           <UserFavoritedRestaurantsCard />
@@ -1339,6 +1339,7 @@ export default {
       };
       this.followings = Followings
       this.followers = Followers
+      this.comments = Comments
     },
   },
 };
