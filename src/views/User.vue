@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-4">
           <!-- User Following Card -->
-          <UserFollowingsCard />
+          <UserFollowingsCard :followings="followings" />
           <br />
           <!-- User Followers Card -->
           <UserFollowersCard />
@@ -1337,6 +1337,7 @@ export default {
         followersLength: Followers.length,
         followingsLength: Followings.length
       };
+      this.followings = Followings
     },
   },
 };
