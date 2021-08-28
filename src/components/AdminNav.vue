@@ -6,3 +6,9 @@
     <a href="#">Users</a>
   </div>
 </template>
+
+<script>
+export default {
+  
+}
+</script>
