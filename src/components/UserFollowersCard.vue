@@ -1,39 +1,30 @@
 <template>
   <div class="card">
-    <div class="card-header"><strong>4</strong> followers (追隨者)</div>
+    <div class="card-header"><strong>{{ followers.length }}</strong> followers (追隨者)</div>
     <div class="card-body">
-      <a href="/users/1">
+      <router-link
+        v-for="follower in followers"
+        :key="follower.id"
+        :to="{ name: 'user', params: { id: follower.id }}" 
+      >
         <img
-          src="https://i.imgur.com/KVFFj35.jpeg"
+          :src="follower.image"
           width="60"
           height="60"
           class="avatar"
         />
-      </a>
-      <a href="/users/71">
-        <img
-          src="https://via.placeholder.com/60"
-          width="60"
-          height="60"
-          class="avatar"
-        />
-      </a>
-      <a href="/users/81">
-        <img
-          src="https://via.placeholder.com/60"
-          width="60"
-          height="60"
-          class="avatar"
-        />
-      </a>
-      <a href="/users/2">
-        <img
-          src="https://via.placeholder.com/60"
-          width="60"
-          height="60"
-          class="avatar"
-        />
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    followers: {
+      type: Array,
+      required: true
+    }
+  }
+}
+</script>

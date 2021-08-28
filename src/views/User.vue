@@ -9,7 +9,7 @@
           <UserFollowingsCard :followings="followings" />
           <br />
           <!-- User Followers Card -->
-          <UserFollowersCard />
+          <UserFollowersCard :followers="followers"/>
         </div>
         <div class="col-md-8">
           <!-- User Comments Card -->
@@ -1338,6 +1338,7 @@ export default {
         followingsLength: Followings.length
       };
       this.followings = Followings
+      this.followers = Followers
     },
   },
 };
