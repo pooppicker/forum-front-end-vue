@@ -26,7 +26,9 @@
           </ul>
           <p>
             <template v-if="currentUser.isAdmin">
-              <button class="btn btn-primary">edit</button>
+              <button class="btn btn-primary">
+                edit
+              </button>
             </template>
             <template v-else>
               <button
