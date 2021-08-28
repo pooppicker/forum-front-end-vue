@@ -68,14 +68,14 @@ const routes = [
     component: () => import('../views/AdminRestaurants.vue')
   },
   {
-    path: '/admin/restaurants/:id',
-    name: 'admin-restaurant',
-    component: () => import('../views/AdminRestaurant.vue')
-  },
-  {
     path: '/admin/restaurants/new',
     name: 'admin-restaurant-new',
     component: () => import('../views/AdminRestaurantNew.vue')
+  },
+  {
+    path: '/admin/restaurants/:id',
+    name: 'admin-restaurant',
+    component: () => import('../views/AdminRestaurant.vue')
   },
   {
     path: '*',

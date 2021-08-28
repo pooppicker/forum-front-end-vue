@@ -100,3 +100,9 @@
     </button>
   </form>
 </template>
+
+<script>
+export default {
+  
+}
+</script>
