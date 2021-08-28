@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <router-link
       class="navbar-brand"
-      to="/"
+      to="/restaurants"
     >
       餐廳評論網
     </router-link>
@@ -26,7 +26,7 @@
       <div class="ml-auto d-flex align-items-center">
         <!-- is user is admin -->
         <router-link
-             to="#" 
+             :to="{ name: 'user', params: { id: currentUser.id }}"  
              v-if="currentUser.isAdmin"
              class="text-white mr-3"
         >
@@ -36,7 +36,7 @@
         <!-- is user is login -->
         <template v-if="isAuthenticated">
           <router-link
-             to="#" 
+             :to="{ name: 'user', params: { id: currentUser.id }}" 
              class="text-white mr-3"
           > 
            {{currentUser.name || '使用者'}} 您好
