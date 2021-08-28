@@ -16,7 +16,7 @@
           <UserCommentsCard :comments="comments" />
           <br />
           <!-- User Favorite Restaurant Card -->
-          <UserFavoritedRestaurantsCard />
+          <UserFavoritedRestaurantsCard :favoritedRestaurants="favoritedRestaurants" />
         </div>
       </div>
     </div>
@@ -1340,6 +1340,7 @@ export default {
       this.followings = Followings
       this.followers = Followers
       this.comments = Comments
+      this.favoritedRestaurants = FavoritedRestaurants
     },
   },
 };
